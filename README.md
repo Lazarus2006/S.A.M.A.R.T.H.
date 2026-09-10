@@ -1,336 +1,180 @@
-# S.A.M.A.R.T.H 🤖
+# S.A.M.A.R.T.H. 🤖
 
-AI-Powered Opportunity Discovery & Eligibility Assistant
+**Social Action Management And Real Time Help**
 
-S.A.M.A.R.T.H is a prototype platform designed to make finding relevant jobs, vacancies, scholarships, and other public opportunities easier.
+A platform that reads your documents, builds your profile, and matches you
+with live government job opportunities you're actually eligible for.
 
-Instead of repeatedly searching multiple websites and checking eligibility for every opportunity, users provide their personal and qualification details once. S.A.M.A.R.T.H then uses AI to compare the user's profile with opportunities collected from trusted sources and presents the relevant opportunities in one place.
+> Upload your documents once. Get matched automatically.
+> Never miss the right opportunity because you didn't know about it.
 
 ---
 
 ## 🚨 The Problem
 
-Students and job seekers often face difficulties such as:
+Every year, crores of qualified Indians miss government job opportunities — not because
+they're unqualified, but because the information never reaches them in time.
 
-- Opportunities being scattered across multiple websites.
-- Missing deadlines because information is discovered too late.
-- Difficulty understanding eligibility criteria.
-- Repeatedly entering the same personal and educational information.
-- Important details being hidden inside lengthy government notifications and PDFs.
-- Difficulty finding opportunities that actually match their qualifications.
+- **Scattered sources** — SarkariResult, Employment News, department sites, PDF circulars.
+  No single place to look.
+- **Bureaucratic language** — long, dense, written for officials, not applicants.
+- **Buried eligibility** — qualification, age, category, fee, documents — all hidden in fine print.
+- **Document confusion** — applicants don't know which certificates they already have vs.
+  which ones they still need to arrange.
+- **Language barrier** — most official info is formal English; millions are more comfortable
+  in Hindi or regional languages.
+- **Missed deadlines** — no proactive matching; people find out after the last date has passed.
 
-As a result, many people miss opportunities simply because they were unaware of them at the right time.
+**Result:** qualified candidates lose opportunities to those who simply had better
+information access.
+
+> *The problem isn't a lack of opportunities — it's a lack of access to them.*
 
 ---
 
 ## 💡 Our Solution
 
-S.A.M.A.R.T.H acts as a personalized opportunity discovery assistant.
+S.A.M.A.R.T.H. flips the traditional job-portal flow:
 
-The user provides their information once, including details such as:
+**Traditional portals:** fill a long form → filter manually → check each notification → apply
 
-- Educational qualifications
-- Skills
-- Certifications
-- Work experience
-- Age
-- Location preferences
-- Preferred job roles
-- Other relevant eligibility information
+**S.A.M.A.R.T.H.:** upload your documents → AI builds your profile → get matched → apply
 
-The platform then analyzes available opportunities and compares their requirements with the user's profile.
+### How it works, in one sentence
 
-If the user appears eligible, the opportunity is displayed along with important information.
+> You upload your resume, degree certificate, ID proof, and experience letters.
+> S.A.M.A.R.T.H. reads them, extracts your profile, matches it against live government
+> job openings, and shows you which ones you qualify for — **plus which documents you're
+> still missing**.
 
-Example
+### Example
 
-Instead of searching:
+**Instead of:**
+> Website 1 → Website 2 → Government Portal → 8 different PDFs → manual eligibility check
 
-«Website 1 → Website 2 → Website 3 → Government Portal → Different PDFs»
-
-The user gets:
-
-«One platform → Personalized opportunities → Eligibility → Important details → Direct application»
+**You get:**
+> One upload → AI-extracted profile → ranked list of eligible jobs → document gap analysis → direct apply link
 
 ---
 
 ## ⚙️ How It Works
+USER
+│
+▼
+┌──────────────────────┐
+│ Upload Documents │
+│ Resume · Degree │
+│ Aadhaar · Exp. letter│
+└──────────┬───────────┘
+│
+▼
+┌──────────────────────┐
+│ Text Extraction │
+│ PDF → pypdf │
+│ Image → Tesseract │
+└──────────┬───────────┘
+│
+▼
+┌──────────────────────┐
+│ Gemini Profile │
+│ Extraction │
+│ → structured JSON │
+└──────────┬───────────┘
+│
+▼
+┌──────────────────────┐
+│ Live Job Fetch │
+│ SarkariResult + │
+│ cached fallback │
+└──────────┬───────────┘
+│
+▼
+┌──────────────────────┐
+│ Gemini Requirement │
+│ Extraction per job │
+└──────────┬───────────┘
+│
+▼
+┌──────────────────────┐
+│ Eligibility + Doc │
+│ Gap Matching │
+└──────────┬───────────┘
+│
+▼
+┌──────────────────────┐
+│ Ranked Results │
+│ ✅ eligible │
+│ ⚠️ partially │
+│ ❌ not eligible │
+└──────────────────────┘
 
-                USER
-                  │
-                  ▼
-       ┌─────────────────────┐
-       │  Create Your Profile │
-       │                     │
-       │ Qualification       │
-       │ Skills              │
-       │ Experience          │
-       │ Preferences         │
-       └──────────┬──────────┘
-                  │
-                  ▼
-       ┌─────────────────────┐
-       │ Trusted Sources     │
-       │ & Public Documents  │
-       └──────────┬──────────┘
-                  │
-                  ▼
-       ┌─────────────────────┐
-       │ Document Processing  │
-       │ & Information        │
-       │ Extraction           │
-       └──────────┬──────────┘
-                  │
-                  ▼
-       ┌─────────────────────┐
-       │ AI Eligibility &    │
-       │ Requirement Matching│
-       └──────────┬──────────┘
-                  │
-                  ▼
-       ┌─────────────────────┐
-       │ Relevant Opportunities│
-       │      for User       │
-       └──────────┬──────────┘
-                  │
-                  ▼
-       ┌─────────────────────┐
-       │ Opportunity Details │
-       │                     │
-       │ • Eligibility       │
-       │ • Last Date         │
-       │ • Application Fee   │
-       │ • Requirements      │
-       │ • Documents         │
-       │ • Source            │
-       │ • Apply Link        │
-       └─────────────────────┘
 
 ---
 
 ## ✨ Key Features
 
-👤 One-Time Profile
+### 📄 Document-First Profile
+Upload a PDF, image, or text file — resume, degree, ID, experience letter.
+S.A.M.A.R.T.H. extracts the profile automatically. No long form.
 
-Users enter their relevant information once instead of repeatedly filling out the same details for every opportunity.
+### 🤖 AI-Powered Extraction
+Gemini reads both your documents **and** the job notifications.
+Extracts qualification, age limit, fees, deadlines, and required documents into clean JSON.
 
-🔎 Opportunity Discovery
+### 🎯 Eligibility Matching
+Each job is scored against your profile:
+- **✅ Eligible** — you meet every stated requirement
+- **⚠️ Partially eligible** — you meet some, not all
+- **❌ Not eligible** — you don't meet the core criteria
+- **❓ Needs verification** — the notification didn't specify enough to decide
 
-The prototype is designed to identify jobs and other opportunities from trusted/public sources.
+### 📋 Document Gap Analysis *(killer feature)*
+For every job, S.A.M.A.R.T.H. shows:
+- ✅ **Documents you already have** (matched against your uploads)
+- ❌ **Documents you still need** (so you know what to arrange before the deadline)
 
-🤖 AI-Based Matching
+### 🔗 Source-Backed Answers
+Every result links back to the official notification on SarkariResult.
+No black-box eligibility calls — you can verify everything.
 
-AI compares:
+### 🌐 Multilingual *(planned)*
+Ask questions in Hindi: *"Isko simple Hindi mein samjhao."*
+Underlying document remains the official source.
 
-User Profile ↔ Opportunity Requirements
-
-and identifies opportunities for which the user appears to meet the stated criteria.
-
-## 📋 Opportunity Dashboard
-
-Relevant opportunities can be displayed together with important information such as:
-
-- Opportunity/Job title
-- Organization
-- Eligibility
-- Qualification required
-- Required skills
-- Application fee
-- Last date
-- Required documents
-- Location
-- Official source
-- Direct application link
-
-## 📄 Document Understanding
-
-Government notifications and other official documents can contain lengthy and complicated information.
-
-S.A.M.A.R.T.H can process these documents and extract useful information such as:
-
-- Eligibility criteria
-- Required documents
-- Application process
-- Important dates
-- Fees
-- Other requirements
-
-## 🌐 Simple Language Support
-
-The platform is designed to make complicated information easier to understand.
-
-Users can interact in English or Hindi.
-
-For example:
-
-«"Isko simple Hindi mein samjhao."»
-
-or
-
-«"Mere liye kaunse documents required hain?"»
-
-The system can provide a simplified explanation while referring back to the original source.
-
-## 🔗 Source-Based Information
-
-The system should provide the source from which important information was obtained.
-
-This helps users verify information directly from the official notification or website.
+### ⚠️ Honest Uncertainty
+When the system can't determine eligibility with confidence, it says so:
+> *"The available information does not clearly specify whether this requirement applies
+> to your profile. Please check the official notification."*
 
 ---
 
 ## 🎯 Target Users
 
-S.A.M.A.R.T.H can be useful for:
-
-- College students
-- Fresh graduates
-- Job seekers
-- Government-job aspirants
-- Students looking for scholarships
-- People searching for public-service opportunities
-
----
-
-## 🧠 AI Architecture
-
-The prototype can use a Retrieval-Augmented Generation (RAG) approach for understanding official documents.
-
-Official Documents
-       │
-       ▼
-   PDF / OCR
-       │
-       ▼
-Text Extraction
-       │
-       ▼
-Document Chunking
-       │
-       ▼
-Embeddings / Index
-       │
-       ▼
-   Retrieval
-       │
-       ▼
-    Gemini / LLM
-       │
-       ▼
-Structured Information
-       │
-       ▼
-Eligibility Matching
-       │
-       ▼
-Personalized Results
+- College students and fresh graduates
+- Government-job aspirants (Railways, SSC, Police, Civil Services, Banking)
+- Scholarship seekers
+- Anyone hunting public-sector opportunities with scattered information
 
 ---
 
 ## 🛠️ Technology Stack
 
-The prototype can be developed using:
+**Frontend**
+- Vanilla HTML + CSS + JavaScript (no build step, single file)
 
-Frontend
+**Backend**
+- Python 3.10+
+- FastAPI + Uvicorn
 
-- HTML
-- CSS
-- JavaScript
+**AI**
+- Google Gemini 2.5 Flash
+- Structured JSON extraction via `response_mime_type`
+- Profile extraction from documents
+- Requirement extraction from notifications
+- Eligibility reasoning
 
-Backend
+**Document Processing**
+- `pypdf` / `PyPDF2` — PDF text extraction
+- Tesseract OCR (`tesseract-ocr`) — scanned PDFs and images
+- System binary called via `subprocess` (no Python wrapper needed)
 
-- Python
-- Flask / FastAPI
-
-AI
-
-- Google Gemini API
-- RAG
-- Embeddings
-
-## Data & Storage
-
-- JSON / SQLite
-- Vector database for document retrieval
-
-Document Processing
-
-- PDF text extraction
-- OCR for scanned documents
-
-
-
-## 🔐 Important Design Principle
-
-S.A.M.A.R.T.H should not blindly trust AI-generated information.
-
-For important information such as eligibility, deadlines, fees, and application requirements, the system should refer to the original source whenever possible.
-
-If the system cannot confidently determine something, it should clearly communicate the uncertainty instead of presenting an assumption as a fact.
-
-For example:
-
-«⚠️ Could not verify: The available information does not clearly specify whether this requirement applies to your profile. Please check the official notification.»
-
----
-
-## 🚀 Prototype Scope
-
-This repository focuses on building a working prototype rather than a complete production platform.
-
-The initial prototype will demonstrate:
-
-1. User profile creation
-2. Qualification and skill collection
-3. Opportunity data collection from selected/trusted sources
-4. Requirement extraction
-5. AI-based profile matching
-6. Eligibility identification
-7. Opportunity dashboard
-8. Important opportunity details
-9. Source references
-10. Direct link to the official application page
-
----
-
-## 🔮 Future Improvements
-
-Possible future versions could include:
-
-- Automatic opportunity monitoring
-- Deadline reminders
-- More Indian regional languages
-- Personalized notifications
-- Resume-based profile creation
-- Advanced eligibility checking
-- More government and private opportunities
-- Better document OCR
-- Mobile application
-- Saved opportunities
-- Application tracking
-- User feedback and matching improvement
-
----
-
-## ⚠️ Disclaimer
-
-S.A.M.A.R.T.H is a prototype intended to assist users in discovering and understanding opportunities.
-
-AI-based eligibility results should be treated as guidance, not a final eligibility decision. Users should always verify important information, deadlines, fees, and eligibility requirements from the official source before applying.
-
----
-
-## 🌟 Vision
-
-«Find opportunities once. Get matched automatically. Never miss the right opportunity because you didn't know about it.»
-
-S.A.M.A.R.T.H aims to turn scattered and complicated public information into simple, personalized, and actionable opportunities.
-
----
-
-## 👥 Project
-
-S.A.M.A.R.T.H
-Smart Assistance & Matching for Accessible Recruitment and Talent Hunting
-
-«One Profile. Multiple Opportunities. Smarter Matching.»
